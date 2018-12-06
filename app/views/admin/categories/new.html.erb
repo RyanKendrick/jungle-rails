@@ -1,0 +1,32 @@
+helllooo
+ create form
+post to create
+
+<header class="page-header">
+  <h1>Admin &raquo; New Category</h1>
+</header>
+
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-1">
+    <%= form_for [:admin, Category.new] do |form| %>
+
+    <% if form.object.errors.any? %>
+      <div class="alert alert-danger">
+        <strong>The following errors prevented saving:</strong>
+        <ul>
+          <% form.object.errors.full_messages.each do |error| %>
+            <li><%= error %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= form.label :Category_name %>
+      <%= form.text_field :name, class: 'form-control' %>
+    </div>
+
+      <%= form.submit 'Create Category', class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+</div>

@@ -4,6 +4,7 @@
       <%= image_tag product.image.thumb, alt: product.name %>
       <h4><%= product.name %></h4>
     <% end %>
+    <p> yoyoyoyo </p>
   </header>
   <p class="description">
     <%= product.description %>
@@ -17,7 +18,20 @@
     <% end %>
   </footer>
 
-  <aside class="price">
-    <%= humanized_money_with_symbol product.price %>
-  </aside>
+  <!-- todo sold out badge and if statement in this file -->
+  <% if product.quantity > 0 %>
+
+      <aside class="price">
+        <%= humanized_money_with_symbol product.price %>
+      </aside>
+
+    <%  else  %>
+
+      <!-- sold out aside -->
+      <aside class="sold-out">
+        <p> SOLD OUT! </p>
+      </aside>
+
+  <% end %>
+
 </article>

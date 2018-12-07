@@ -1,7 +1,15 @@
 class Admin::ProductsController < ApplicationController
 
+  http_basic_authenticate_with name: ENV["ADMIN_USER"] , password: ENV["ADMIN_PASSWORD"]
+
+
+
   def index
     @products = Product.order(id: :desc).all
+  end
+
+  def edit
+    render plain: "Restricted Access!"
   end
 
   def new

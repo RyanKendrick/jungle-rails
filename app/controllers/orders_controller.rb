@@ -2,18 +2,24 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    @user = User.find(session[:user_id])
     puts 'order'
     puts @order.inspect
     puts @order.user.inspect
     puts '*******'
   end
 
+
+
   def create
+
     charge = perform_stripe_charge
     order  = create_order(charge)
+    user = User.find(session[:user_id])
 
     if order.valid?
       empty_cart!
+      UserMailer.order_email(user, order).deliver_later
       redirect_to order, notice: 'Your Order has been placed.'
     else
       redirect_to cart_path, flash: { error: order.errors.full_messages.first }

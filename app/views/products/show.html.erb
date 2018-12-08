@@ -52,7 +52,8 @@
 
     <h1> Reviews </h1>
 
-  <% @reviews.each do |review| %>
+    <% @reviews.order(created_at: :desc).each do |review| %>
+
 
     <div class="row">
       <div class="col-sm-8">

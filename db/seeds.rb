@@ -108,7 +108,7 @@ cat2.products.create!({
   price: 2_026.29
 })
 
-cat3.products.create!({
+product1 = cat3.products.create!({
   name:  'Optimal Sleeping Bed',
   description: Faker::Hipster.paragraph(4),
   image: open_asset('furniture1.jpg'),
@@ -116,7 +116,7 @@ cat3.products.create!({
   price: 3_052.00
 })
 
-cat3.products.create!({
+product2 = cat3.products.create!({
   name:  'Electric Chair',
   description: Faker::Hipster.paragraph(4),
   image: open_asset('furniture2.jpg'),
@@ -124,7 +124,7 @@ cat3.products.create!({
   price: 987.65
 })
 
-cat3.products.create!({
+product3 = cat3.products.create!({
   name:  'Red Bookshelf',
   description: Faker::Hipster.paragraph(4),
   image: open_asset('furniture3.jpg'),
@@ -132,5 +132,28 @@ cat3.products.create!({
   price: 2_483.75
 })
 
+## new user
+
+user1 = User.create!({
+  name: "joe blow",
+  email: "joeblow@gmail.com",
+  password_digest: BCrypt::Password.create('joeblow')
+  })
+
+
+
+
+## Reviews
+
+puts "creating reviews"
+
+30.times do
+  Review.create!(
+    product_id: rand(1..12),
+    user_id: 1,
+    description: Faker::TvShows::RickAndMorty.quote,
+    rating: rand(1..5)
+  )
+end
 
 puts "DONE!"

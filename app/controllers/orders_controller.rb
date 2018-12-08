@@ -17,12 +17,13 @@ class OrdersController < ApplicationController
     order  = create_order(charge)
     user = User.find(session[:user_id])
 
-    if order.valid?
-      empty_cart!
-      UserMailer.order_email(user, order).deliver_later
-      redirect_to order, notice: 'Your Order has been placed.'
-    else
-      redirect_to cart_path, flash: { error: order.errors.full_messages.first }
+      if order.valid?
+        empty_cart!
+        UserMailer.order_email(user, order).deliver_later
+        redirect_to order, notice: 'Your Order has been placed.'
+      else
+        redirect_to cart_path, flash: { error: order.errors.full_messages.first }
+      end
     end
 
   rescue Stripe::CardError => e

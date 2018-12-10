@@ -14,4 +14,10 @@ class ReviewsController < ApplicationController
       redirect_to product_path(:id => params[:product_id]), notice: 'NO DICE BRAH!'
     end
   end
+
+  def destroy
+    @reviews = Review.find params[:id]
+    @reviews.destroy
+    redirect_to product_path(:id => params[:product_id])
+  end
 end

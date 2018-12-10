@@ -70,7 +70,9 @@
           <dd><%= review.description %></dd>
           <dt>Rating</dt>
           <dd><%= review.rating %></dd>
-          <%= button_to class: 'btn btn-xs btn-danger' do %> Delete <% end %>
+          <%= button_to product_review_path(@product, review), class: 'btn btn-xs btn-danger',
+          method: :delete, data: { confirm: 'Delete Review?'} do %> Delete <% end %>
+
         </dl>
       </div>
     </div>

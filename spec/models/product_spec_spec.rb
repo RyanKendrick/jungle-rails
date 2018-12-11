@@ -46,7 +46,7 @@ RSpec.describe Product, type: :model do
     end
 
     # category validation example
-    
+
     it "is not valid without a category" do
       product = Product.create(
         name: 'name',
